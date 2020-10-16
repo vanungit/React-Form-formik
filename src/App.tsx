@@ -1,11 +1,9 @@
 import React from "react";
 import { Formik, Field, ErrorMessage } from 'formik';
 import {Form} from 'formik';
-import {useState} from 'react';
 import * as Yup from 'yup';
 
 const App:React.FC = () => {
- const [state,setState]= useState(true)
 
     return (
         <div>
@@ -13,13 +11,14 @@ const App:React.FC = () => {
             <Formik
                 initialValues={{name: '', email: '', password: '', select: ''}}
                 validationSchema={Yup.object({
-                    name: Yup.string().matches(/^[A-Za-z]+$/, "Only English letters").required("Required *"),
+                    name: Yup.string().matches(/^[A-Za-z]+$/, 'Please enter a valid name').required('Please enter a valid name'),
                     email:Yup.string()
-                        .email("invalid email address")
-                        .required("Required"),
+                        .email('Please enter a valid email address')
+                        .required('Required'),
                     password:Yup.string()
                         .required('No password provided.')
-                        .min(8, 'Password is too short - should be 8 chars minimum.'),
+                        .min(8, 'Password must contain at last 6 symbols.'),
+                    select:Yup.string().required('You must be select your country')
 
                 })}
                 onSubmit={(values, {setSubmitting}) => {
@@ -37,16 +36,16 @@ const App:React.FC = () => {
                         <ErrorMessage name="email" component="div"/>
                         <Field type="password" name="password"/>
                         <ErrorMessage name="password" component="div"/>
-                        <select name="select"
-                                value="Select country"
-                        >
-                            <option value="Select country" label="Select country" selected/>
+
+                        <Field as="select" name="select">
+                            <option value="" label="Select country" hidden={true} />
                             <option value="Lativa" label="Lativa"/>
                             <option value="Lebanon" label="Lebanon"/>
                             <option value="Lesotho" label="Lesotho"/>
                             <option value="Liberia" label="Liberia"/>
                             <option value="Libia" label="Libia"/>
-                        </select>
+                        </Field>
+                        <ErrorMessage name="select" component="div"/>
                         <button type="submit" disabled={isSubmitting}>
                             Submit
                         </button>
