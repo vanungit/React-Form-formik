@@ -2,6 +2,7 @@ import React from "react";
 import {Formik, Field, ErrorMessage} from 'formik';
 import {Form} from 'formik';
 import * as Yup from 'yup';
+import { validationForm } from "./validation/validation";
 
 const App: React.FC = () => {
 
@@ -9,21 +10,8 @@ const App: React.FC = () => {
         <div>
             <h1>Create a new account</h1>
             <Formik
-                initialValues={{name: '', email: '', password: '', select: '', gender:'',terms:''}}
-                validationSchema={Yup.object({
-                    name: Yup.string().matches(/^[A-Za-z]+$/, 'Please enter a valid name').required('Please enter a valid name'),
-                    email: Yup.string()
-                        .email('Please enter a valid email address')
-                        .required('Required'),
-                    password: Yup.string()
-                        .required('No password provided.')
-                        .min(8, 'Password must contain at last 6 symbols.'),
-                    select: Yup.string().required('You must be select your country'),
-
-                    terms: Yup.string().required('You have to agree with our Terms and Conditions!'),
-                    gender: Yup.string().required('You must select the gender'),
-
-                })}
+                initialValues={{name: '', email: '', password: '', select: '', gender: '', terms: ''}}
+                validationSchema={validationForm}
                 onSubmit={(values, {setSubmitting}) => {
                     setTimeout(() => {
                         alert(JSON.stringify(values, null, 2));
