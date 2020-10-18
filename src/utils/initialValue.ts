@@ -1,0 +1,1 @@
+export const initialValue = {name: '', email: '', password: '', select: '', gender: '', terms: ''}

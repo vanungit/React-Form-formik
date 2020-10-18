@@ -1,31 +1,37 @@
-import React from "react";
+import React, {useState} from "react";
+import "./FontAwesome"
 import {Formik, Field, ErrorMessage} from 'formik';
 import {Form} from 'formik';
-import * as Yup from 'yup';
 import { validationForm } from "./validation/validation";
+import { initialValue } from "./utils/initialValue";
+import {icons} from './icons/index'
 
 const App: React.FC = () => {
-
+   const [toggle,setToggle] = useState(false)
     return (
         <div>
             <h1>Create a new account</h1>
             <Formik
-                initialValues={{name: '', email: '', password: '', select: '', gender: '', terms: ''}}
+                initialValues={initialValue}
                 validationSchema={validationForm}
                 onSubmit={(values, {setSubmitting}) => {
                     setTimeout(() => {
                         alert(JSON.stringify(values, null, 2));
                         setSubmitting(false);
-                    }, 400);
+                    }, 1000);
                 }}
             >
                 {({isSubmitting}) => (
                     <Form>
                         <Field type="text" name="name"/>
                         <ErrorMessage name="name" component="div"/>
+                        <img src={icons.mass} alt=""/>
                         <Field type="email" name="email"/>
+
                         <ErrorMessage name="email" component="div"/>
                         <Field type="password" name="password"/>
+                        <img src={icons.pass} alt=""/>
+
                         <ErrorMessage name="password" component="div"/>
 
                         <Field as="select" name="select">
