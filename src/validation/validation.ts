@@ -4,7 +4,7 @@ export const validationForm = Yup.object({
     name: Yup.string().matches(/^[A-Za-z]+$/, 'Please enter a valid name').required('Please enter a valid name'),
     email: Yup.string()
         .email('Please enter a valid email address')
-        .required('Required'),
+        .required('Please enter a valid email address'),
     password: Yup.string()
         .required('No password provided.')
         .min(8, 'Password must contain at last 6 symbols.'),
