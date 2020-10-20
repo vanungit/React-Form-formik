@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import {Field, Form, ErrorMessage} from 'formik';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import svg from "../icons/Group 845.png";
 
 export const StyledCounter = styled.div`
   top: 0px;
@@ -37,14 +40,12 @@ opacity: 1;
 padding-bottom:37px;
   
 `;
-
-
 export const Input = styled(Field)`
 position:relative;
 margin-top:21px;
 top:8px;
 padding-left:${props => (props.padding)+"px"};
-width: ${props=> (333 - props.padding)+"px"};
+width: ${props=> props.padding?(333 - props.padding)+"px":"333px"};
 height: 50px;
 background: #F5F8FA 0% 0% no-repeat padding-box;
 border-radius: 8px;
@@ -54,12 +55,6 @@ font: normal normal normal 17px Roboto;
 letter-spacing: 0px;
 color: #A2A2A2 !important;
 border:none;
- &:before {
- background: transparent url('../icons/Group 845.png') 0% 0% no-repeat padding-box; 
- >&: {
- position:absolute;
- }
- }
 `;
 export const ErrorMassageStyle = styled(ErrorMessage)`
 position:relative;
@@ -80,3 +75,39 @@ position:relative;
 height:10px;
 width:200px;
 `;
+export const Img = styled.img`
+position:absolute;
+margin-top: ${props=> props.id == "mass"? "48px":props.id == "pass"? "45px":null};
+margin-left:15px;
+ z-index: 2;
+
+`;
+
+export const LabelDiv = styled.label`
+    width: 14px;
+    height: 14px;
+    left: ${props=> props.id == "male" || "terms"? "32px":props.id == "female"? "85px":null};
+    border-radius: 3.5px;
+    border: 1px solid #0094FF;
+    position: absolute;
+    
+  
+`;
+export const FontAwesomeStyled = styled(FontAwesomeIcon)`
+   display:none;
+   width: 11px !important;
+    position: absolute;
+    top: 431px;
+    left: 35px;
+    color: #0094FF
+`;
+export const CheckboxField = styled(Field)`
+ &:checked + ${FontAwesomeStyled} {
+    display:block;
+    }
+background: #FFFFFF 0% 0% no-repeat padding-box;
+opacity:1;
+`;
+
+
+

@@ -1,13 +1,29 @@
 import React, {useState} from "react";
 import "./FontAwesome"
-import {Formik, Field, ErrorMessage} from 'formik';
+import {Formik, ErrorMessage} from 'formik';
 import {validationForm} from "./validation/validation";
 import {initialValue} from "./utils/initialValue";
-import {icons} from './icons/index'
-import {Title, StyledCounter, LayoutProperties, Input,FormStyled, ErrorMassageStyle,ErrorDiv} from "./styled-component/styled";
+import {icons} from './icons';
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+
+
+import {
+    Title,
+    StyledCounter,
+    LayoutProperties,
+    Input,
+    FormStyled,
+    ErrorMassageStyle,
+    ErrorDiv,
+    Img,
+    CheckboxField,
+    LabelDiv,
+    FontAwesomeStyled
+
+} from "./styled-component/styled";
 
 const App: React.FC = () => {
-    const [toggle, setToggle] = useState(false)
+    const [toggle, setToggle] = useState()
     return (
         <StyledCounter>
             <LayoutProperties>
@@ -27,16 +43,20 @@ const App: React.FC = () => {
 
                             <Input type="text" name="name" padding={"18"}/>
                             <ErrorDiv>
-                            <ErrorMassageStyle name="name" component="div" />
+                                <ErrorMassageStyle name="name" component="div"/>
                             </ErrorDiv>
+
+                            <Img src={icons.mass} alt="" id={"mass"}/>
                             <Input type="email" name="email" padding={"52"}/>
                             <ErrorDiv>
-                            <ErrorMassageStyle name="email" component="div"/>
+                                <ErrorMassageStyle name="email" component="div"/>
                             </ErrorDiv>
+
+                            <Img src={icons.pass} alt="" id={"pass"}/>
                             <Input type="password" name="password" padding={"52"}/>
-                            <img src={icons.pass} alt=""/>
+
                             <ErrorDiv>
-                            <ErrorMassageStyle name="password" component="div"/>
+                                <ErrorMassageStyle name="password" component="div"/>
                             </ErrorDiv>
 
                             <Input as="select" name="select">
@@ -47,22 +67,39 @@ const App: React.FC = () => {
                                 <option value="Liberia" label="Liberia"/>
                                 <option value="Libia" label="Libia"/>
                             </Input>
-                            <ErrorMassageStyle name="select" component="div"/>
+                            <ErrorDiv>
+                                <ErrorMassageStyle name="select" component="div"/>
+                            </ErrorDiv>
 
-                            <label>
-                                <Field type="checkbox" name="gender" value="Male"/>
-                                Male
-                                <Field type="checkbox" name="gender" value="Female"/>
-                                Female
-                            </label>
-                            <ErrorMassageStyle name="gender" component="div"/>
 
-                            <label>
-                                <Field type="checkbox" name="terms" value="terms"/>
+
+                                    <CheckboxField type="checkbox" id={"Male"} checked={toggle === "Male"}
+                                                   onChange={(e: any) => setToggle(e.target.value)} name="gender"
+                                                   value="Male" />
+                                                   Male
+                            {/*<LabelDiv htmlFor="terms" id="male"/>*/}
+
+
+                                    <CheckboxField type="checkbox" checked={toggle === "Female"}
+                                                   onChange={(e: any) => setToggle(e.target.value)} name="gender"
+                                                   value="Female"/>
+                            {/*<LabelDiv htmlFor="terms" id="female"/>*/}
+                                    Female
+
+                            <ErrorDiv>
+                                <ErrorMassageStyle name="gender" component="div"/>
+                            </ErrorDiv>
+
+
+
+                            <CheckboxField id="terms" type="checkbox" name="terms" value="terms"/>
+                                 <FontAwesomeStyled icon={faCheck} />
+                                <LabelDiv htmlFor="terms" id="terms"/>
                                 Accept <span>terms</span> and conditions
-                            </label>
-                            <ErrorMessage name="terms" component="div"/>
 
+                            <ErrorDiv>
+                                <ErrorMessage name="terms" component="div"/>
+                            </ErrorDiv>
                             <button type="submit" disabled={isSubmitting}>
                                 Submit
                             </button>
