@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-export const validationForm = Yup.object({
+export const validationForm = Yup.object().shape({
     name: Yup.string().matches(/^[A-Za-z]+$/, 'Please enter a valid name').required('Please enter a valid name'),
     email: Yup.string()
         .email('Please enter a valid email address')

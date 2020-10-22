@@ -1,1 +1,1 @@
-export const initialValue = {name: '', email: '', password: '', select: '', gender: '', terms: ''}
+export const initialValue = {name: '', email: '', password: '', select: 'green', gender: '', terms: ''}
