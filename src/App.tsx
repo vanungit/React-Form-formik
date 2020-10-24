@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "./FontAwesome"
-import {Formik, Field, useFormikContext} from 'formik';
+import {Formik, Field} from 'formik';
 import {validationForm} from "./validation/validation";
 import {initialValue} from "./utils/initialValue";
 import {icons} from './icons';
@@ -59,9 +59,7 @@ const App: React.FC = () => {
                             console.log(JSON.stringify(values, null, 2));
                             setSubmitting(false);
                         }, 10000);
-                    }}
-                >
-
+                    }}>
                     {({isSubmitting, errors, dirty}) => (
 
                         <FormStyled>
