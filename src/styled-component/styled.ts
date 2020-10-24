@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import {Field, Form, ErrorMessage} from 'formik';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {icons} from '../icons';
+
 
 export const StyledCounter = styled.div`
   top: 0px;
@@ -38,7 +40,7 @@ padding-bottom:37px;
 `;
 export const Input = styled(Field)`
 position:relative;
-top:${props => (props.padding == 52)? "47px" :(props.padding == 51)?"57px":(props.padding == 18)? "37px": "67px"};
+top:${props => (props.padding == 52)? "47px" :(props.padding == 51)?"57px":(props.padding == 18)? "37px": null};
 padding-left:${props =>props.padding? (props.padding) + "px": props.id? "18px":null};
 width: ${props => props.padding ? (333 - props.padding) + "px" : "333px"};
 height: 50px;
@@ -52,18 +54,20 @@ border:none;
 `;
 
 export const SelectDiv = styled.div`
-position:relative;
-top: "67px";
-padding-left:"18px";
-width:"333px";
-height: 50px;
-background: #F5F8FA 0% 0% no-repeat padding-box;
-border-radius: 8px;
-opacity: 1;
-text-align: left;
-font: normal normal normal 17px Roboto;
-letter-spacing: 0px;
-border:none;
+ & > select {
+    position:relative;
+    top: 67px;
+    padding-left:18px;
+    width:333px;
+    height: 50px;
+    background: #F5F8FA 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    opacity: 1;
+    text-align: left;
+    font: normal normal normal 17px Roboto;
+    letter-spacing: 0px;
+    border:none;
+}
 `
 export const ErrorMassageStyle = styled(ErrorMessage)`
 position:relative;
@@ -148,13 +152,26 @@ color: #FFFFFF;
 opacity: 1;
 width: 343px;
 height: 62px;
-background: #A2A2A2 0% 0% no-repeat padding-box;
+background: ${props=>props.id === 'blue'? "blue": "#A2A2A2"} 0% 0% no-repeat padding-box;
 border-radius: 31px;
 border:none;
 outline: none;
-&:disabled {
-  background: blue;
+&:disabled{
+    background: url(${icons.loader}) no-repeat center ;  
+    width:40px;
+     animation-name: breath-animation;
+     animation-duration: 1s;
+     animation-iteration-count: infinite;
+     @keyframes breath-animation {
+     0% {  transform: rotate(0deg); }
+      100% {  transform: rotate(360deg); }
+    }
+    opacity:0.2;
+    position:absolute;
+    top:490px;
+    left 180px;
 }
+
 `
 
 

@@ -11,5 +11,4 @@ export const validationForm = Yup.object().shape({
     select: Yup.string().required('You must be select your country'),
     gender: Yup.string().required('You must select the gender'),
     terms: Yup.string().required('You must accept the policies'),
-
 })
